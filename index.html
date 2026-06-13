@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Val'Run</title>
+  <meta name="description" content="The world of Val'Run — its compendium, its chronicles, and more." />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#0d0f13" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Val'Run" />
+  <meta property="og:description" content="The world of Val'Run — its compendium, its chronicles, and more." />
+  <meta property="og:url" content="https://valrun.org/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=IM+Fell+English+SC&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --ink:#0d0f13; --ink-soft:#15181f; --ink-card:#161a22; --ink-line:#2a2f3a;
+      --vellum:#ece3cf; --vellum-2:#d8cfb8; --vellum-dim:#b6ad97; --vellum-mute:#8d8672;
+      --oxblood:#8a2a2a; --gold:#c2992f; --gold-hi:#e0bd6a; --indigo:#3a4a6e;
+      --serif:"Cormorant Garamond",Garamond,serif; --read:"EB Garamond",Garamond,serif;
+      --smcap:"IM Fell English SC",var(--serif);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{background:var(--ink);color:var(--vellum);font-family:var(--read);min-height:100svh;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;display:flex;flex-direction:column}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background-image:radial-gradient(ellipse at top,rgba(195,154,70,.06),transparent 60%),
+      radial-gradient(ellipse at bottom,rgba(138,42,42,.04),transparent 60%)}
+    body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-size:160px;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
+    :focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:2px}
+    @media (prefers-reduced-motion: reduce){*{transition-duration:.001ms!important}}
+
+    main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      max-width:1080px;margin:0 auto;padding:clamp(48px,9vh,120px) 28px;width:100%}
+    .eyebrow{font-family:var(--smcap);letter-spacing:.32em;text-transform:uppercase;font-size:.8rem;color:var(--vellum-mute);margin:0 0 14px}
+    h1{font-family:var(--serif);font-weight:600;font-size:clamp(4rem,13vw,8rem);line-height:.95;margin:0;letter-spacing:.01em;color:var(--vellum)}
+    .tagline{font-family:var(--read);font-style:italic;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--vellum-dim);margin:18px 0 0;max-width:48ch;text-align:center}
+    .flourish{display:flex;align-items:center;gap:16px;color:var(--gold);margin:40px 0 8px;width:min(420px,70vw);opacity:.85}
+    .flourish::before,.flourish::after{content:"";flex:1;height:1px;opacity:.5;background:linear-gradient(90deg,transparent,var(--gold))}
+    .flourish::after{background:linear-gradient(270deg,transparent,var(--gold))}
+    .flourish span{font-size:.95rem}
+
+    .gates{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;width:100%;margin-top:44px}
+    @media(max-width:760px){.gates{grid-template-columns:1fr;max-width:440px}}
+    .gate{display:flex;flex-direction:column;background:var(--ink-card);border:1px solid var(--ink-line);
+      border-radius:5px;padding:30px 26px 26px;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+      transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .gate::after{content:"";position:absolute;inset:0;border-radius:5px;pointer-events:none;
+      background:radial-gradient(120% 90% at 50% 0%,rgba(195,154,70,.07),transparent 55%);opacity:0;transition:opacity .2s}
+    .gate:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 50px rgba(0,0,0,.55)}
+    .gate:hover::after{opacity:1}
+    .num{font-family:var(--smcap);letter-spacing:.2em;text-transform:uppercase;font-size:.66rem;color:var(--gold);margin-bottom:14px}
+    .gname{font-family:var(--serif);font-weight:500;font-size:1.9rem;line-height:1.1;margin:0 0 10px;color:var(--vellum)}
+    .gate:hover .gname{color:var(--gold-hi)}
+    .gdesc{font-size:1rem;line-height:1.55;color:var(--vellum-dim);margin:0;flex:1}
+    .enter{font-family:var(--smcap);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--vellum-mute);margin-top:22px;display:inline-flex;align-items:center;gap:8px}
+    .gate:hover .enter{color:var(--gold)}
+    .enter .arr{transition:transform .2s} .gate:hover .enter .arr{transform:translateX(4px)}
+
+    footer{text-align:center;padding:28px;color:var(--vellum-mute);font-family:var(--smcap);letter-spacing:.14em;font-size:.74rem;border-top:1px solid var(--ink-line)}
+    footer .dot{opacity:.5;margin:0 8px}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">The World of</p>
+    <h1>Val'Run</h1>
+    <p class="tagline">Seven ages of a world built to be permanent — and the breaking that was always coming.</p>
+
+    <div class="flourish"><span aria-hidden="true">❦</span></div>
+
+    <nav class="gates" aria-label="Val'Run">
+      <a class="gate" href="https://codex.valrun.org">
+        <span class="num">I · Reference</span>
+        <h2 class="gname">The Codex</h2>
+        <p class="gdesc">The compendium of the world — its peoples, places, powers, and the seven ages.</p>
+        <span class="enter">Enter <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+      <a class="gate" href="https://stories.valrun.org">
+        <span class="num">II · Fiction</span>
+        <h2 class="gname">The Chronicles</h2>
+        <p class="gdesc">Short tales set across the ages of Val'Run — dispatches, myths, and memories.</p>
+        <span class="enter">Read <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+      <a class="gate" href="https://app.valrun.org">
+        <span class="num">III · Play</span>
+        <h2 class="gname">The Tabletop</h2>
+        <p class="gdesc">Tools for running your table in the world of Val'Run.</p>
+        <span class="enter">Play <span class="arr" aria-hidden="true">→</span></span>
+      </a>
+    </nav>
+  </main>
+
+  <footer>Val'Run<span class="dot" aria-hidden="true">·</span>A worldbuilding project</footer>
+</body>
+</html>
